@@ -1,0 +1,14 @@
+{
+  "resourceName": "s30dadd985",
+  "policyUUID": "0dadd985",
+  "bucketName": "employeeclientmanage66cd24d373994098a90211fb7e4",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger80d49d7c",
+  "groupAccess": {}
+}

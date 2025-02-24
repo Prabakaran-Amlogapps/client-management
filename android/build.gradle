@@ -1,0 +1,29 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    
+    // Add namespace configuration for all projects
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                if (!android.hasProperty('namespace')) {
+                    namespace = project.group
+                }
+            }
+        }
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

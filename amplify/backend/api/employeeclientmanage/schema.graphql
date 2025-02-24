@@ -1,0 +1,93 @@
+type Client @model {
+  id: ID!
+  companyName: String!
+  personName: String!
+  position: String!
+  contactNumber: String!
+  email: String!
+  address: String!
+  onboardDate: AWSDateTime!
+}
+
+type PaymentDetails @model {
+  id: ID!
+  projectName: String!
+  clientName: String!
+  totalAmount: Float!
+  pendingAmount: Float!
+  receivedAmount: Float!
+  date: AWSDateTime!
+}
+
+type Project @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  projectName: String!
+  clientName: String!
+  projectDate: AWSDateTime!
+  location: String!
+  contactPerson: String!
+  contactNumber: String!
+  totalCost: Float!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type EmployeePayment @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  fullName: String!
+  date: AWSDateTime!
+  totalSalary: Float!
+  currentSalary: Float!
+  remainSalary: Float!
+  position: String!
+}
+
+type Employee @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  fullName: String!
+  gender: String!
+  position: String!
+  salary: Float!
+  currentAddress: String!
+  permanentAddress: String
+  sameAsCurrent: Boolean
+  mobileNumber: String!
+  profileImage: String
+  proofDocument: String
+}
+
+type Attendance @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  name: String!
+  position: String!
+  status: AttendanceStatus!
+  note: String
+  absentReason: String
+  date: AWSDateTime!
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+}
+
+type Note @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  title: String!
+  description: String
+  isCompleted: Boolean!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Profile @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String!
+  companyName: String!
+  industry: String!
+  numberOfEmployees: Int!
+  address: String!
+  contact: String!
+  email: String!
+  updatedAt: AWSDateTime
+}
